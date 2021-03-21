@@ -1,38 +1,19 @@
 
 import { Cliente } from './Cliente.js'
-import { ContaCorrente } from './ContaCorrent.js'
+import { Diretor } from './Funcionarios/Diretor.js';
+import { Gerente } from './Funcionarios/Gerente.js';
+import { SistemaAutenticaocao } from './SistemaAutenticacao.js'
 
-const cliente1 = new Cliente('Vítor Mendes', '12344567889');
-const cliente2 = new Cliente('Fernanda Carpinetti', '12344567889');
+const cliente = new Cliente('Enzo', '12345678901', '1234');
+const diretor = new Diretor('Fernanda', 1000, '12345678901');
+diretor.cadastrarSenha('1234');
+const gerente = new Gerente('Vitor', 800, '12345678901');
+gerente.cadastrarSenha('123');
 
+const logadoDiretor = SistemaAutenticaocao.login(diretor, '1234');
+const logadoGerente = SistemaAutenticaocao.login(gerente, '123');
+const logadoCliente = SistemaAutenticaocao.login(cliente, '1234');
 
-const contaCorrentCliente1 = new ContaCorrente('1001', cliente1);
-
-const contaCorrentCliente2 = new ContaCorrente('1001', cliente2);
-
-
-console.log(cliente1);
-console.log(cliente2);
-
-console.log(contaCorrentCliente1);
-console.log(contaCorrentCliente2);
-
-contaCorrentCliente1.depositar(1000);
-contaCorrentCliente2.depositar(10000);
-
-console.log(`**Saldo após depósito**`)
-console.log(`Saldo do cliente1: ${contaCorrentCliente1.saldo}`);
-console.log(`Saldo do cliente2: ${contaCorrentCliente2.saldo}`);
-
-contaCorrentCliente2.sacar(1000);
-contaCorrentCliente1.sacar(10000);
-
-console.log(`**Saldo após saque**`)
-console.log(`Saldo do cliente1: ${contaCorrentCliente1.saldo}`);
-console.log(`Saldo do cliente2: ${contaCorrentCliente2.saldo}`);
-
-contaCorrentCliente2.tranferir(4000, contaCorrentCliente1);
-
-console.log(`Saldo das contas após transferência`);
-console.log(`Saldo do cliente1: ${contaCorrentCliente1.saldo}`);
-console.log(`Saldo do cliente2: ${contaCorrentCliente2.saldo}`);
+console.log(logadoDiretor);
+console.log(logadoGerente);
+console.log(logadoCliente);
